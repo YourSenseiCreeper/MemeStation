@@ -1,0 +1,26 @@
+{% extends "memes/skeleton.html" %}
+
+{% block login_button %}
+    {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle btn btn-primary" id="nav-button" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user }}</a>
+        <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+        <a class="dropdown-item" href="{% url 'memes:user' user %}">Profil<i class="fa fa-user" style="margin-left: 10px;"></i></a>
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'memes:logout' %}">Wyloguj<i class="fa fa-sign-out-alt" style="margin-left: 10px;"></i></a>
+        </div>
+        <li class="nav-item">
+            <a href="{% url 'memes:add' %}" id="nav-button" class="btn btn-primary mr-sm-2">Dodaj mema</a>
+        </li>
+        <!-- </li> -->
+    <!-- {% if user.is_superuser %}
+        <a href="{% url 'admin:index' %}" id="nav-button" class="btn btn-primary mr-sm-2">{{ user }}</a>
+    {% else %}
+        <a href="{% url 'memes:user' user %}" id="nav-button" class="btn btn-primary mr-sm-2">{{ user }}</a>
+    {% endif %}
+    <a href="{% url 'memes:logout' %}" id="nav-button" class="btn btn-danger">Wyloguj</a> -->
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
